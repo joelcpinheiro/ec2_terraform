@@ -31,7 +31,7 @@ unzip terraform.zip;
 mv terraform /usr/local/bin
 ```
 
-### 6. Execute these commands to create an Ec2 Instance:
+### 6. Execute these commands to create an EC2 Instance:
 
 ```sh
 terraform init
