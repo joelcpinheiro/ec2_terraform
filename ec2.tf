@@ -1,7 +1,7 @@
 resource "aws_instance" "server" {
   ami           = var.ami
   instance_type = var.instance_type
-  key_name = "niggerkey"
+  key_name = var.key_name
 
   tags = {
     Name        = var.name

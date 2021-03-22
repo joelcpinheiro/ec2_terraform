@@ -5,7 +5,7 @@ variable "region" {
 
 variable "name" {
   description = "Name of the Application"
-  default = "server02"
+  default = "server03"
 }
 
 variable "env" {
@@ -14,11 +14,16 @@ variable "env" {
 }
 
 variable "ami" {
-  description = "AWS AMI to be used "
-  default = "ami-07ebfd5b3428b6f4d"
+  description = "AWS AMI to be used is centos 7 "
+  default = "ami-00e87074e52e6c9f9"
 }
 
 variable "instance_type" {
   description = "AWS Instance type defines the hardware configuration of the machine"
   default = "t2.micro"
+}
+
+variable "key_name" {
+  description = "AWS key using all the time already created for this purpose"
+  default = "niggerkey"
 }
