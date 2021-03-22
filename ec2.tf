@@ -1,6 +1,7 @@
 resource "aws_instance" "server" {
   ami           = var.ami
   instance_type = var.instance_type
+  key_name = "niggerkey"
 
   tags = {
     Name        = var.name
@@ -8,3 +9,5 @@ resource "aws_instance" "server" {
     Provisioner = "Terraform"
   }
 }
+
+
