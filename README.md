@@ -1,4 +1,4 @@
-# terraform_ec2
+# Create a new EC2 Instance using t2-micro and CentOS 7.9 AMI
 
 ### Requisites
 
