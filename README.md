@@ -14,12 +14,22 @@ git clone https://github.com/joelcpinheiro/terraform_ec2.git
 
 ### Install AWS-CLI package
 ```sh
-
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";
+unzip awscliv2.zip;
+./aws/install
 ```
+### Add your credential of IAM User created on Step 1:
+
+```sh
+aws configure
+```
+
 
 ### Install terraform too
 ```sh
-
+curl https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip -o terraform.zip;
+unzip terraform.zip;
+mv terraform /usr/local/bin
 ```
 
 
