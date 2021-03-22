@@ -2,9 +2,9 @@
 
 ### Requisites
 
-You already have a key par to insert on variables.tf file. 
+You must be had a ```key par``` created on AWS, he's to be used to insert on variables.tf file(line 28).
 
-### 1. Create a IAM User with Programmatic Access on AWS Console
+### 1. Create a IAM User with ```Programmatic access``` Access type and add permission name ```AmazonEC2FullAccess``` on AWS Console;
 
 ### 2. Clone this project using this command below:
 
@@ -18,7 +18,7 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip;
 ./aws/install
 ```
-### 4. Add your credential of IAM User created on Step 1:
+### 4. Add your credential of IAM User created on Step 1, use the ```Access Key ID``` and ```Secret``` to configure:
 
 ```sh
 aws configure
@@ -40,3 +40,5 @@ terraform apply
 ```
 
 ### Now you must to use your key par with .pem extension and connect on your new EC2 Instance.
+
+### I hope you enjoy.
