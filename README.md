@@ -45,5 +45,17 @@ terraform apply
 ```sh
 ssh -i "keyparAWS.pem" centos@ecIPAWS.compute-1.amazonaws.com
 ```
+#### Version
 
-#### I hope you enjoy.
+1.0
+
+#### Author
+
+ ***Joel Pinheiro** - *Github* - https://github.com/joelcpinheiro/
+
+#### License
+
+Use where you think you will contribute, I hope you enjoy.
+
+
+
