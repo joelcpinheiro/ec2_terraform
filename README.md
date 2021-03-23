@@ -3,7 +3,7 @@
 #### Requisites
 ------------
 
-You mmust have installed ```git``` and ```unzip``` package on your GNU Linux to perform this action<br>
+You must have installed ```git``` and ```unzip``` package on your GNU Linux to perform this action<br>
 You must be had a ```key par``` created on AWS, he's to be used to insert on variables.tf file(line 28).
 
 #### 1. Create a IAM User with ```Programmatic access``` Access type and add permission name ```AmazonEC2FullAccess``` on AWS Console;
