@@ -51,6 +51,8 @@ terraform apply
 ssh -i "keyparAWS.pem" centos@ecIPAWS.compute-1.amazonaws.com
 ```
 
+#### Don't forget to save your .tfstate file on the safe place.
+
 #### Version
 ------------
 
@@ -65,3 +67,4 @@ ssh -i "keyparAWS.pem" centos@ecIPAWS.compute-1.amazonaws.com
 ------------
 
 Use where you think you will contribute, I hope you enjoy.
+
