@@ -10,6 +10,9 @@ resource "aws_instance" "server" {
   }
 }
 
+# Creating a Security Group with these allowing ports
+vpc_security_group_ids      = [aws_security_group.sg.id]
+
 resource "aws_security_group" "sg" {
   name        = "sg"
   description = "Allow TCP/80 & TCP/22"
