@@ -4,6 +4,7 @@ resource "aws_instance" "server" {
   instance_type = var.instance_type
   key_name = var.key_name
   vpc_security_group_ids      = [aws_security_group.sg.id]
+  user_data = "${file("install_httpd.sh")}"
  
   tags = {
     Name        = "K8S-${count.index + 1}"
@@ -25,11 +26,11 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["187.18.129.236/32"]
   }
   ingress {
-    description = "Allow HTTP traffic on port 8081"
-    from_port   = 8081
-    to_port     = 8081
+    description = "Allow HTTP traffic on port 80"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["187.18.129.236/32"]
+    cidr_blocks = ["187.18.129.236/32", "179.182.130.165/32"]
   }
   egress {
     from_port   = 0
