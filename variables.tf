@@ -2,7 +2,6 @@ variable "region" {
   description = "Define what region the instance will be deployed"
   default = "us-east-1"
 }
-
 variable "instance_count" {
   default = "3"
 }
