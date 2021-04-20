@@ -3,9 +3,8 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "name" {
-  description = "Name of the Application"
-  default = "server01"
+variable "instance_count" {
+  default = "3"
 }
 
 variable "env" {
