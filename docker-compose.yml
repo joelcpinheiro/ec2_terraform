@@ -3,11 +3,50 @@
 
 version: '3.1'
 services:
+
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - CF_API_EMAIL=joelcostapinheiro@gmail.com
+    # - CF_API_KEY=yPdBt2XhsAKL4K749L0J7RIw5eNeMZCogKfIT_ny
+      - CF_API_KEY=9709040de54d15900a12b82db710602094dfe
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/centos/traefik/data/traefik.yml:/traefik.yml:ro
+      - /home/centos/traefik/data/acme.json:/acme.json
+      - /home/centos/traefik/data/config.yml:/config.yml:ro
+    labels:
+       - "traefik.enable=true"
+        - "traefik.http.routers.traefik.entrypoints=http"
+       - "traefik.http.routers.traefik.rule=Host(`dashboard.joelpinheiro.com`)"
+       - "traefik.http.middlewares.traefik-auth.basicauth.users=USER:BASIC_AUTH_PASSWORD"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+       - "traefik.http.routers.traefik-secure.entrypoints=https"
+        - "traefik.http.routers.traefik-secure.rule=Host(`dashboard.joelpinheiro.com`)"
+                     - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+                            - "traefik.http.routers.traefik-secure.tls=true"
+                               - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+                                  - "traefik.http.routers.traefik-secure.tls.domains[0].main=joelpinheiro.com"
+                            - "traefik.http.routers.traefik-secure.service=api@internal"
   ghost:
     image: ghost:4-alpine
     restart: always
     ports:
       - 8080:2368
+    networks:
+      - backend
+      - frontend
+ 
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -16,11 +55,30 @@ services:
       database__connection__password: example
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
-      #url: http://localhost:8080
+      url: http://joelpinheiro.com
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
+      NODE_ENV: production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.website.entrypoints=http"
+      - "traefik.http.routers.website.rule=Host(`joelpinheiro.com`)"
+      - "traefik.http.middlewares.website-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.website.middlewares=portainer-https-redirect"
+      - "traefik.http.routers.website-secure.entrypoints=https"
+      - "traefik.http.routers.website-secure.rule=Host(`joelpinheiro.com`)"
+      - "traefik.http.routers.website-secure.tls=true"
+      - "traefik.http.routers.website-secure.service=portainer"
+      - "traefik.http.services.website.loadbalancer.server.port=8080"
+      - "traefik.docker.network=frontend"      
+
   db:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    networks:
+      - backend 
+  networks:
+    frontend:
+    backend:
