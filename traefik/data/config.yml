@@ -1,13 +1,13 @@
 http:
    routers:
-    website:
+    mywebsite:
       entryPoints:
         - "https"
       rule: "Host(`joelpinheiro.com`)"
       middlewares:
          - default-headers
       tls: {}
-      service: website
+      service: mywebsite
   services:
     website:
       loadBalancer:

@@ -60,15 +60,15 @@ services:
       NODE_ENV: production
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.website.entrypoints=http"
-      - "traefik.http.routers.website.rule=Host(`joelpinheiro.com`)"
-      - "traefik.http.middlewares.website-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.website.middlewares=mywebsite-https-redirect"
-      - "traefik.http.routers.website-secure.entrypoints=https"
-      - "traefik.http.routers.website-secure.rule=Host(`joelpinheiro.com`)"
-      - "traefik.http.routers.website-secure.tls=true"
-      - "traefik.http.routers.website-secure.service=ghost"
-      - "traefik.http.services.website.loadbalancer.server.port=8888"
+      - "traefik.http.routers.mywebsite.entrypoints=http"
+      - "traefik.http.routers.mywebsite.rule=Host(`joelpinheiro.com`)"
+      - "traefik.http.middlewares.mywebsite-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mywebsite.middlewares=mywebsite-https-redirect"
+      - "traefik.http.routers.mywebsite-secure.entrypoints=https"
+      - "traefik.http.routers.mywebsite-secure.rule=Host(`joelpinheiro.com`)"
+      - "traefik.http.routers.mywebsite-secure.tls=true"
+      - "traefik.http.routers.mywebsite-secure.service=ghost"
+      - "traefik.http.services.mywebsite.loadbalancer.server.port=8888"
       #- "traefik.docker.network=frontend"      
 
   db:
