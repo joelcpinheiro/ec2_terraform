@@ -42,7 +42,7 @@ services:
     image: ghost:4-alpine
     restart: always
     ports:
-      - 8888:2368
+      - 8080:2368
     links:
       - db
 
@@ -68,7 +68,7 @@ services:
       - "traefik.http.routers.website-secure.rule=Host(`joelpinheiro.com`)"
       - "traefik.http.routers.website-secure.tls=true"
       - "traefik.http.routers.website-secure.service=ghost"
-      - "traefik.http.services.website.loadbalancer.server.port=8080"
+      - "traefik.http.services.website.loadbalancer.server.port=8888"
       #- "traefik.docker.network=frontend"      
 
   db:
