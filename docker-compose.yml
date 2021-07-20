@@ -8,8 +8,8 @@ services:
     image: traefik:latest
     container_name: traefik
     restart: unless-stopped
-    networks:
-      - proxy
+    links:
+      - ghost
     ports:
       - 80:80
       - 443:443
@@ -42,11 +42,10 @@ services:
     image: ghost:4-alpine
     restart: always
     ports:
-      - 8080:2368
-    networks:
-      - backend
-      - frontend
- 
+      - 8888:2368
+    links:
+      - db
+
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -64,21 +63,16 @@ services:
       - "traefik.http.routers.website.entrypoints=http"
       - "traefik.http.routers.website.rule=Host(`joelpinheiro.com`)"
       - "traefik.http.middlewares.website-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.website.middlewares=portainer-https-redirect"
+      - "traefik.http.routers.website.middlewares=mywebsite-https-redirect"
       - "traefik.http.routers.website-secure.entrypoints=https"
       - "traefik.http.routers.website-secure.rule=Host(`joelpinheiro.com`)"
       - "traefik.http.routers.website-secure.tls=true"
-      - "traefik.http.routers.website-secure.service=portainer"
+      - "traefik.http.routers.website-secure.service=ghost"
       - "traefik.http.services.website.loadbalancer.server.port=8080"
-      - "traefik.docker.network=frontend"      
+      #- "traefik.docker.network=frontend"      
 
   db:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-    networks:
-      - backend 
-  networks:
-    frontend:
-    backend:
