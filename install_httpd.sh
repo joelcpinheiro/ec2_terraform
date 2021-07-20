@@ -3,4 +3,4 @@ sudo yum update
 sudo yum install -y httpd
 sudo systemctl start httpd
 sudo systemctl enable httpd
-echo "<h1>EC2 deployed via Terraform </h1>"| sudo tee /var/www/html/index.html
+echo "<h1>EC2 deployed via Terraform! </h1>"| sudo tee /var/www/html/index.html
