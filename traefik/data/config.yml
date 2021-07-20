@@ -15,7 +15,7 @@ http:
     ghost:
       loadBalancer:
         servers:
-          - url: "https://joelpinheiro.com:8080"
+          - url: "http://3.236.153.206:8080"
         passHostHeader: true
 #endregion
   middlewares:
