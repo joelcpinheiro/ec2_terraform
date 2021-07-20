@@ -17,6 +17,7 @@ services:
       - CF_API_EMAIL=joelcostapinheiro@gmail.com
     # - CF_API_KEY=yPdBt2XhsAKL4K749L0J7RIw5eNeMZCogKfIT_ny
       - CF_API_KEY=9709040de54d15900a12b82db710602094dfe
+      - --log.level=DEBUG
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -27,17 +28,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
       - "traefik.http.routers.traefik.rule=Host(`dashboard.joelpinheiro.com`)"
-     #- "traefik.http.middlewares.traefik-auth.basicauth.users=USER:BASIC_AUTH_PASSWORD"
-      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
-      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
       - "traefik.http.routers.traefik-secure.rule=Host(`dashboard.joelpinheiro.com`)"
-      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
       - "traefik.http.routers.traefik-secure.tls.domains[0].main=joelpinheiro.com"
-      - "traefik.http.routers.traefik-secure.service=api@internal"
+     #- "traefik.http.routers.traefik-secure.service=api@internal"
   ghost:
     image: ghost:4-alpine
     restart: always
@@ -54,21 +50,21 @@ services:
       database__connection__password: example
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
-      url: http://joelpinheiro.com
+      url: https://joelpinheiro.com:8080
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
       NODE_ENV: production
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.mywebsite.entrypoints=http"
-      - "traefik.http.routers.mywebsite.rule=Host(`joelpinheiro.com`)"
+      - "traefik.http.routers.ghost.entrypoints=http"
+      - "traefik.http.routers.ghost.rule=Host(`joelpinheiro.com`)"
       - "traefik.http.middlewares.mywebsite-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.mywebsite.middlewares=mywebsite-https-redirect"
-      - "traefik.http.routers.mywebsite-secure.entrypoints=https"
-      - "traefik.http.routers.mywebsite-secure.rule=Host(`joelpinheiro.com`)"
-      - "traefik.http.routers.mywebsite-secure.tls=true"
-      - "traefik.http.routers.mywebsite-secure.service=ghost"
-      - "traefik.http.services.mywebsite.loadbalancer.server.port=8888"
+      - "traefik.http.routers.ghost.middlewares=mywebsite-https-redirect"
+      - "traefik.http.routers.ghost-secure.entrypoints=https"
+      - "traefik.http.routers.ghost-secure.rule=Host(`joelpinheiro.com`)"
+      - "traefik.http.routers.ghost-secure.tls=true"
+      - "traefik.http.routers.ghost-secure.service=ghost"
+      - "traefik.http.services.ghost.loadbalancer.server.port=8080"
       #- "traefik.docker.network=frontend"      
 
   db:

@@ -1,4 +1,4 @@
-mywebsite:
+api:
   dashboard: true
   debug: true
 entryPoints:
