@@ -8,7 +8,7 @@ http:
       middlewares:
         - default-headers
       tls: {}
-      service: ghost
+#      service: ghost
 #endregion
 #region services
 #   services:
@@ -22,9 +22,9 @@ http:
 #     addprefix-pihole:
 #       addPrefix:
 #         prefix: "/admin"
-#     https-redirect:
-#       redirectScheme:
-#         scheme: https
+     https-redirect:
+       redirectScheme:
+         scheme: https
 
     default-headers:
       headers:
@@ -38,7 +38,7 @@ http:
         stsSeconds: 15552000
         customFrameOptionsValue: SAMEORIGIN
         customRequestHeaders:
-          X-Forwarded-Proto: https
+        X-Forwarded-Proto: https
 
     default-whitelist:
       ipWhiteList:

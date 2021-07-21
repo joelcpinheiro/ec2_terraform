@@ -1,6 +1,3 @@
-#Ghost image will use SQLite (and thus requires no separate database container)
-# we have used MySQL here merely for demonstration purposes (especially environment-variable-based configuration)
-
 version: '3.1'
 services:
   ghost:
@@ -12,6 +9,7 @@ services:
    #   - db
     networks:
       - proxy
+      - backend
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -33,7 +31,7 @@ services:
       - "traefik.http.routers.ghost-secure.entrypoints=https"
       - "traefik.http.routers.ghost-secure.rule=Host(`joelpinheiro.com`)"
       - "traefik.http.routers.ghost-secure.tls=true"
-      - "traefik.http.routers.ghost-secure.service=ghost"
+      #- "traefik.http.routers.ghost-secure.service=ghost"
       #- "traefik.http.services.ghost.loadbalancer.server.port=8080"
       #- "traefik.port=2368"
       - "traefik.docker.network=proxy"      
@@ -43,3 +41,10 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    networks:
+      - backend
+networks:
+  proxy:
+    external: true
+  backend:
+    internal: true
