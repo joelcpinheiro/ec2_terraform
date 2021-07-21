@@ -11,20 +11,20 @@ http:
       service: ghost
 #endregion
 #region services
-  services:
-    ghost:
-      loadBalancer:
-        servers:
-          - url: "http://3.236.153.206:8080"
-        passHostHeader: true
-#endregion
-  middlewares:
-    addprefix-pihole:
-      addPrefix:
-        prefix: "/admin"
-    https-redirect:
-      redirectScheme:
-        scheme: https
+#   services:
+#     ghost:
+#       loadBalancer:
+#         servers:
+#           - url: "http://3.236.153.206:8080"
+#         passHostHeader: true
+# #endregion
+#   middlewares:
+#     addprefix-pihole:
+#       addPrefix:
+#         prefix: "/admin"
+#     https-redirect:
+#       redirectScheme:
+#         scheme: https
 
     default-headers:
       headers:

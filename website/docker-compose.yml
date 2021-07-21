@@ -3,45 +3,15 @@
 
 version: '3.1'
 services:
-
-  traefik:
-    image: traefik:latest
-    container_name: traefik
-    restart: unless-stopped
-    links:
-      - ghost
-    ports:
-      - 80:80
-      - 443:443
-    environment:
-      - CF_API_EMAIL=joelcostapinheiro@gmail.com
-    # - CF_API_KEY=yPdBt2XhsAKL4K749L0J7RIw5eNeMZCogKfIT_ny
-      - CF_API_KEY=9709040de54d15900a12b82db710602094dfe
-      - --log.level=DEBUG
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/centos/mywebsite/traefik/data/traefik.yml:/traefik.yml:ro
-      - /home/centos/mywebsite/traefik/data/acme.json:/acme.json
-      #- /home/centos/mywebsite/traefik/data/config.yml:/config.yml:ro
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`dashboard.joelpinheiro.com`)"
-      - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.rule=Host(`dashboard.joelpinheiro.com`)"
-      - "traefik.http.routers.traefik-secure.tls=true"
-      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].main=joelpinheiro.com"
-     #- "traefik.http.routers.traefik-secure.service=api@internal"
   ghost:
     image: ghost:4-alpine
     restart: always
-    ports:
-      - 8080:2368
-    links:
-      - db
-
+   # ports:
+   #   - 8080:2368
+   # links:
+   #   - db
+    networks:
+      - proxy
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -64,9 +34,9 @@ services:
       - "traefik.http.routers.ghost-secure.rule=Host(`joelpinheiro.com`)"
       - "traefik.http.routers.ghost-secure.tls=true"
       - "traefik.http.routers.ghost-secure.service=ghost"
-      - "traefik.http.services.ghost.loadbalancer.server.port=8080"
+      #- "traefik.http.services.ghost.loadbalancer.server.port=8080"
       #- "traefik.port=2368"
-      #- "traefik.docker.network=frontend"      
+      - "traefik.docker.network=proxy"      
 
   db:
     image: mysql:5.7

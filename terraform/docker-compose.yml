@@ -1,0 +1,35 @@
+version: '3.1'
+services:
+
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - CF_API_EMAIL=joelcostapinheiro@gmail.com
+    # - CF_API_KEY=yPdBt2XhsAKL4K749L0J7RIw5eNeMZCogKfIT_ny
+      - CF_API_KEY=9709040de54d15900a12b82db710602094dfe
+      - --log.level=DEBUG
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/centos/mywebsite/traefik/data/traefik.yml:/traefik.yml:ro
+      - /home/centos/mywebsite/traefik/data/acme.json:/acme.json
+      - /home/centos/mywebsite/traefik/data/config.yml:/config.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`dashboard.joelpinheiro.com`)"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`dashboard.joelpinheiro.com`)"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=joelpinheiro.com"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+    networks: 
+      - proxy
