@@ -17,11 +17,11 @@ http:
 #         servers:
 #           - url: "http://3.236.153.206:8080"
 #         passHostHeader: true
-# #endregion
-#   middlewares:
-#     addprefix-pihole:
-#       addPrefix:
-#         prefix: "/admin"
+ #endregion
+   middlewares:
+     addprefix-pihole:
+       addPrefix:
+         prefix: "/admin"
      https-redirect:
        redirectScheme:
          scheme: https

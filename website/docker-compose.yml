@@ -11,7 +11,6 @@ services:
       - proxy
       - backend
     environment:
-      # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
@@ -20,7 +19,6 @@ services:
       # this url value is just an example, and is likely wrong for your environment!
       url: https://joelpinheiro.com
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
-      #NODE_ENV: development
       NODE_ENV: production
     labels:
       - "traefik.enable=true"
