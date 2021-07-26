@@ -3,21 +3,12 @@ services:
   ghost:
     image: ghost:4-alpine
     restart: always
-   # ports:
-   #   - 8080:2368
-   # links:
-   #   - db
     networks:
       - proxy
       - backend
     env_file:
       - .data.env
     environment:
-      #database__client: mysql
-      #database__connection__host: db
-      #database__connection__user: root
-      #database__connection__password: example
-      #database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
       url: https://joelpinheiro.com
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
@@ -38,8 +29,6 @@ services:
     restart: always
     env_file:
       - .data.env 
-   #environment:
-      #MYSQL_ROOT_PASSWORD: example
     networks:
       - backend
 networks:
