@@ -3,7 +3,7 @@
 #### Requisites
 
 You must have installed ```git``` and ```unzip``` package on your GNU Linux to perform this action;<br>
-You must be had a ```key par``` created on AWS, he's to be used to insert on variables.tf file(line 28).
+You must be has a ```key par``` created on AWS, it will be used to insert on variables.tf file(line 28).
 
 ------------
 #### Follow these steps:
@@ -29,7 +29,7 @@ unzip awscliv2.zip;
 aws configure
 ```
 
-#### 5. Install Terraform to running your EC2 Instance:
+#### 5. Install Terraform to perform a new EC2 Instance:
 
 ```sh
 curl https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip -o terraform.zip;
@@ -37,7 +37,7 @@ unzip terraform.zip;
 mv terraform /usr/bin/
 ```
 
-#### 6. Execute these commands to create an EC2 Instance:
+#### 6. Execute these commands now:
 
 ```sh
 terraform init
@@ -45,13 +45,13 @@ terraform plan
 terraform apply
 ```
 
-#### Now you must to use your key par with .pem extension and connect on your new EC2 Instance, as a example below:
+#### Now you must to use your key par with .pem extension(created earlier) and connect on your new EC2 Instance, as a example below:
 
 ```sh
 ssh -i "keyparAWS.pem" centos@ecIPAWS.compute-1.amazonaws.com
 ```
 
-#### Don't forget to save your .tfstate file on the safe place.
+#### Don't forget to save your .tfstate file in a safe place.
 
 #### Version
 ------------
