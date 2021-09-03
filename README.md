@@ -8,7 +8,7 @@ You must be has a ```key par``` created on AWS, it will be used to insert on var
 ------------
 #### Follow these steps:
 
-#### 1. Create a IAM User with ```Programmatic access``` Access type and add permission name ```AmazonEC2FullAccess``` on AWS Console;
+#### 1. Access the AWS Web Console and create a IAM User with ```Programmatic access``` access type and add permission name ```AmazonEC2FullAccess```;
 
 #### 2. Clone this project using this command below:
 
