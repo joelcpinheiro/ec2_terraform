@@ -13,7 +13,7 @@ You must be has a ```key par``` created on AWS, it will be used to insert on var
 #### 2. Clone this project using this command below:
 
 ```sh
-git clone https://github.com/joelcpinheiro/terraform_ec2.git
+git clone https://github.com/joelcpinheiro/ec2_terraform.git
 ```
 
 #### 3. Install AWS-CLI package:
