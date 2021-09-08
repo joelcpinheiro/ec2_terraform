@@ -16,7 +16,7 @@ You must be has a ```key par``` created on AWS, it will be used to insert on var
 git clone https://github.com/joelcpinheiro/ec2_terraform.git
 ```
 
-#### 3. Install AWS-CLI Version 2 package for linux:
+#### 3. Install AWS CLI version 2 package for linux OS:
 
 ```sh
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";
