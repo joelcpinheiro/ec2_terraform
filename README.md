@@ -1,4 +1,4 @@
-# Create a new EC2 Instance using t2-micro and CentOS 7.9 AMI
+# Create a new EC2 Instance on US-EAST-1 Region(North Viiginia) using t2-micro and CentOS 7.9 AMI
 
 #### Requisites
 
@@ -29,7 +29,7 @@ unzip awscliv2.zip;
 aws configure
 ```
 
-#### 5. Install Terraform to perform a new EC2 Instance:
+#### 5. Now you need to install Terraform to perform a new EC2 Instance:
 
 ```sh
 curl https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip -o terraform.zip;
@@ -41,6 +41,8 @@ mv terraform /usr/bin/
 
 ```sh
 terraform init
+terraform fmt
+terraform validate
 terraform plan
 terraform apply
 ```
