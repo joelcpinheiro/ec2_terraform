@@ -3,7 +3,7 @@
 #### Requisites
 
 You must have installed ```git``` and ```unzip``` package on your GNU Linux to perform this action;<br>
-You must be has a ```key par``` created on AWS, it will be used to insert on variables.tf file(line 28).
+You must have a ```key par``` on AWS, it will be used to insert on ```variables.tf``` file(line 28).
 
 ------------
 #### Follow these steps:
