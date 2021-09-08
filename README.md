@@ -1,4 +1,4 @@
-# Create a new EC2 Instance on US-EAST-1 Region(North Viiginia) using t2-micro and CentOS 7.9 AMI
+# Create a new EC2 Instance on US-EAST-1 Region(North Virginia) using t2-micro and CentOS 7.9 AMI
 
 #### Requisites
 
