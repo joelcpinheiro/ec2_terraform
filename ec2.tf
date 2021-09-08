@@ -4,7 +4,7 @@ resource "aws_instance" "server" {
   instance_type = var.instance_type
   key_name = var.key_name
   vpc_security_group_ids      = [aws_security_group.sg.id]
-  user_data = "${file("install_docker.sh")}"
+  user_data = "${file("scripts/install_docker.sh")}"
  
   tags = {
     Name        = "DKR-${count.index + 1}"
