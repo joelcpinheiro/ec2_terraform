@@ -16,7 +16,7 @@ You must be has a ```key par``` created on AWS, it will be used to insert on var
 git clone https://github.com/joelcpinheiro/ec2_terraform.git
 ```
 
-#### 3. Install AWS-CLI package:
+#### 3. Install AWS-CLI Version 2 package for linux:
 
 ```sh
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";
@@ -37,7 +37,7 @@ unzip terraform.zip;
 mv terraform /usr/bin/
 ```
 
-#### 6. Execute these commands now:
+#### 6. Execute these commands now and try to understand all those steps:
 
 ```sh
 terraform init
