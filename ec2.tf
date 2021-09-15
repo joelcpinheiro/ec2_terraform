@@ -30,21 +30,21 @@ resource "aws_security_group" "sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["187.18.129.236/32", "179.182.130.165/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "Allow HTTP traffic on port 8080"
-    from_port   = 8080
-    to_port     = 8080
+    description = "Allow HTTP traffic on port 443"
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["187.18.129.236/32", "179.182.130.165/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "Allow HTTP traffic on port 2368"
-    from_port   = 2368
-    to_port     = 2368
-    protocol    = "tcp"
-    cidr_blocks = ["187.18.129.236/32", "179.182.130.165/32"]
+    description = "Allow ICMP ping traffic"
+    from_port   = 1
+    to_port     = 1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
     from_port   = 0
