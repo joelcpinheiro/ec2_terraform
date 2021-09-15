@@ -3,7 +3,7 @@
 #### Requisites
 
 You must have installed ```git``` and ```unzip``` package on your GNU Linux to perform this action;<br>
-You must have a ```key par``` on AWS, it will be used to insert on ```variables.tf``` file(line 28).
+You must have a ```key par``` on AWS, it will be used to insert on ```variables.tf``` file(line 24).
 
 ------------
 #### Follow these steps:
@@ -21,7 +21,7 @@ git clone https://github.com/joelcpinheiro/ec2_terraform.git
 ```sh
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";
 unzip awscliv2.zip;
-./aws/install
+sudo ./aws/install
 ```
 #### 4. Add your credential of IAM User created on Step 1, use the ```Access Key ID``` and ```Secret Key``` to configure:
 
@@ -41,8 +41,6 @@ mv terraform /usr/bin/
 
 ```sh
 terraform init
-terraform fmt
-terraform validate
 terraform plan
 terraform apply
 ```
