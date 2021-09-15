@@ -15,7 +15,7 @@ resource "aws_instance" "server" {
 
 # Single EIP associate with the new instance
   resource "aws_eip" "lb" {
-    instance = aws_instance.web.id
+    instance = aws_instance.server.id
     vpc      = true
 }
 
