@@ -13,6 +13,12 @@ resource "aws_instance" "server" {
   }
 }
 
+# Single EIP associate with the new instance
+  resource "aws_eip" "lb" {
+    instance = aws_instance.web.id
+    vpc      = true
+}
+
 # Creating a Security Group with these allowing ports
 
 resource "aws_security_group" "sg" {
