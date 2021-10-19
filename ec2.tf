@@ -1,5 +1,5 @@
 resource "aws_instance" "server" {
-  count         = var.instance_count
+  #count         = var.instance_count
   ami           = var.ami
   instance_type = var.instance_type
   key_name = var.key_name
@@ -7,22 +7,39 @@ resource "aws_instance" "server" {
   user_data = "${file("scripts/install_docker.sh")}"
  
   tags = {
-    Name        = "DKR-${count.index + 1}"
+    # Name        = "DKR-${count.index + 1}"
+    Name = "DKR01"
     Environment = var.env
     Provisioner = "Terraform"
   }
 }
 
-# Single EIP associate with the new instance
-  resource "aws_eip" "lb" {
-    instance = aws_instance.server.id
-    vpc      = true
+# resource block for eip #
+resource "aws_eip" "myeip" {
+  vpc      = true
+}
+
+# resource block for ec2 and eip association #
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.server.id
+  allocation_id = aws_eip.myeip.id
+}
+
+
+# ECR Repository to manage docker images
+resource "aws_ecr_repository" "imagestream" {
+  name                 = "ghost"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }
 
 # Creating a Security Group with these allowing ports
 
 resource "aws_security_group" "sg" {
-  name        = "sg_new"
+  name        = "sg_dev"
   description = "Allow TCP/80 & TCP/22"
   ingress {
     description = "Allow access to por 22"

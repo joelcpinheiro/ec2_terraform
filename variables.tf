@@ -8,7 +8,7 @@ variable "instance_count" {
 
 variable "env" {
   description = "Environment of the Application"
-  default = "production"
+  default = "development"
 }
 
 variable "ami" {
