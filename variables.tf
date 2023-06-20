@@ -18,10 +18,10 @@ variable "ami" {
 
 variable "instance_type" {
   description = "AWS Instance type defines the hardware configuration of the machine"
-  default = "t2.micro"
+  default = "t3.micro"
 }
 
 variable "key_name" {
   description = "AWS key using all the time already created for this purpose"
-  default = "niggerkey"
+  default = "bia"
 }
