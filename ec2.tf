@@ -46,7 +46,7 @@ resource "aws_security_group" "sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["187.18.129.236/32"]
+    cidr_blocks = ["189.45.97.87/32"]
   }
   ingress {
     description = "Allow HTTP traffic on port 80"
