@@ -8,7 +8,7 @@ resource "aws_instance" "server" {
  
   tags = {
     # Name        = "DKR-${count.index + 1}"
-    Name = "DKR01"
+    Name = "changeit"
     Environment = var.env
     Provisioner = "Terraform"
   }
@@ -18,26 +18,21 @@ resource "aws_instance" "server" {
 #resource "aws_eip" "myeip" {
 #  vpc      = true
 #}
-
 # resource block for ec2 and eip association #
 #resource "aws_eip_association" "eip_assoc" {
 #  instance_id   = aws_instance.server.id
 #  allocation_id = aws_eip.myeip.id
 #}
 
-
 # ECR Repository to manage docker images
 # resource "aws_ecr_repository" "imagestream" {
 #  name                 = "ghost"
 #  image_tag_mutability = "MUTABLE"
-
 #  image_scanning_configuration {
 #    scan_on_push = true
 #  }
 #}
-
-# Creating a Security Group with these allowing ports
-
+# Creating a Security Group with these allowing IP/ports
 resource "aws_security_group" "sg" {
   name        = "sg_dev"
   description = "Allow TCP/80 & TCP/22"
