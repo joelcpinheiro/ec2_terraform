@@ -11,9 +11,9 @@ terraform {
   backend "s3" {
     bucket = "tf-on-aws-for-ec2"
     key    = "devs/terraform.tfstate"
-    region = "us-east-1" 
-    
+    region = "us-east-1"
+
     # For State Locking
-    dynamodb_table = "dev-project2"    
-  }    
+    dynamodb_table = "dev-project3"
+  }
 }

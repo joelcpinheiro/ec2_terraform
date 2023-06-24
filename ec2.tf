@@ -1,14 +1,14 @@
 resource "aws_instance" "server" {
   #count         = var.instance_count
-  ami           = var.ami
-  instance_type = var.instance_type
-  key_name = var.key_name
-  vpc_security_group_ids      = [aws_security_group.sg.id]
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  vpc_security_group_ids = [aws_security_group.sg.id]
   #user_data = "${file("scripts/install_docker.sh")}"
- 
+
   tags = {
     # Name        = "DKR-${count.index + 1}"
-    Name = "changeit"
+    Name        = "changeit"
     Environment = var.env
     Provisioner = "Terraform"
   }
